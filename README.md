@@ -14,3 +14,7 @@ may download the image at http://craiger.org/digipi
 
 Thank you for your support,
 -craig
+
+w1baw to install 
+git clone https://github.com/bwattendorf/digipi_x86.git \
+  $HOME/digipi && bash $HOME/digipi/digipi
