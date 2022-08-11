@@ -17,13 +17,13 @@ sudo mkdir /var/www/html
 
 sudo mkdir /var/www/html/digipi
 
-sudo mv -f /home/pi/digipi_x86/etc/* /etc/
+sudo mv -f /home/pi/digipi/etc/* /etc/
 
-sudo mv -f /home/pi/digipi_x86/user/* /user/
+sudo mv -f /home/pi/digipi/user/* /user/
 
-sudo mv -f /home/pi/digipi_x86/home/* /home/
+sudo mv -f /home/pi/digipi/home/* /home/
 
-sudo mv -f /home/pi/digipi_x86/var/www/html/* /var/www/html/digipi/
+sudo mv -f /home/pi/digipi/var/www/html/* /var/www/html/digipi/
 
 #make sure php7.4 is installed
 #x11vnc
