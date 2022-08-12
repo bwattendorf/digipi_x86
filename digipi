@@ -28,9 +28,26 @@ sudo cp -rv /home/pi/digipi/home/* /home/
 sudo cp -rv /home/pi/digipi/var/www/html/* /var/www/html/
 
 
+## install direwolf
+git clone https://www.github.com/wb2osz/direwolf
+cd direwolf || return
+mkdir build
+cd build
+sudo apt-get install -y libasound2-dev cmake libudev-dev
+cmake ..
+make -j 4
+sudo make install
+make install-conf
+sudo make clean
+sudo chown -h pi:pi /home/pi/direwolf.log
+sudo touch /run/direwolf.log 
+sudo chown -h pi:pi /run/direwolf.log
+
+
+
 #https://raspberrypi.stackexchange.com/questions/44812/shell-exec-is-not-working
 
-#modify php.ini in /etc/php/7.4/apache/php.ini     remove all for disable_functions
+#modify php.ini in /etc/php/7.4/apache2/php.ini     remove all for disable_functions
 
 #install ttyd in /usr/local/bin
 
