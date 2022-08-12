@@ -15,7 +15,9 @@ sudo make && make install
 
 ## remove ttyd folder in 
 
-sudo mkdir /var/www/html/digipi
+#sudo mkdir /var/www/html/digipi
+
+sudo rm /var/www/html/index.html
 
 sudo cp -rv /home/pi/digipi/etc/* /etc/
 
