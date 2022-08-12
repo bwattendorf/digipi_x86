@@ -15,24 +15,15 @@ sudo make && make install
 
 ## remove ttyd folder in 
 
-# move /etc folder to /etc 
-
 sudo mkdir /var/www/html/digipi
-
-#### I am getting can not move folder is not empty error
 
 sudo cp -rv /home/pi/digipi/etc/* /etc/
 
-sudo cp -rv /home/pi/digipi/user/* /user/
+sudo cp -rv /home/pi/digipi/usr/* /usr/
 
 sudo cp -rv /home/pi/digipi/home/* /home/
 
-sudo cp -rv /home/pi/digipi/var/www/html/* /var/www/html/digipi/
-
-#make sure php7.4 is installed
-#x11vnc
-
-#copied all digipi files into my syslem
+sudo cp -rv /home/pi/digipi/var/www/html/* /var/www/html/
 
 
 #https://raspberrypi.stackexchange.com/questions/44812/shell-exec-is-not-working
