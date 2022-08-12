@@ -1,7 +1,13 @@
 sudo apt-get install novnc -y
 sudo apt-get install tightvncserver -y
 
+### install apache and php maybe same we install for cloudlog
+
 sudo apt-get install build-essential cmake git libjson-c-dev libwebsockets-dev -y
+if ! hash php7.4 2>/dev/null; then
+		sudo apt install -y php7.4
+	fi
+
 git clone https://github.com/tsl0922/ttyd.git
 cd ttyd && mkdir build && cd build
 sudo cmake ..
@@ -11,11 +17,9 @@ sudo make && make install
 
 # move /etc folder to /etc 
 
-sudo mkdir /var/www
-
-sudo mkdir /var/www/html
-
 sudo mkdir /var/www/html/digipi
+
+#### I am getting can not move folder is not empty error
 
 sudo mv -f /home/pi/digipi/etc/* /etc/
 
