@@ -40,10 +40,11 @@ make -j 4
 sudo make install
 make install-conf
 sudo make clean
-sudo chown -h pi:pi /home/pi/direwolf.log
-sudo touch /run/direwolf.log 
-sudo chown -h pi:pi /run/direwolf.log
+#sudo chown -h pi:pi /home/pi/direwolf.log
+#sudo touch /run/direwolf.log 
+#sudo chown -h pi:pi /run/direwolf.log
 
+sudo adduser www-data sudo
 
 
 #https://raspberrypi.stackexchange.com/questions/44812/shell-exec-is-not-working
