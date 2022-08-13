@@ -1,0 +1,96 @@
+#!/bin/sh 
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "exit 0" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+
+# Print the IP address
+#_IP=$(hostname -I) || true
+#if [ "$_IP" ]; then
+#  printf "My IP address is %s\n" "$_IP"
+#fi
+
+# kick up cpu during boot, shaves 10 seconds off runtime on zero
+echo "performance" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
+# display boot message
+
+soundcards=`cat /proc/asound/cards | wc -l`
+if [ $soundcards -gt 1 ]; then
+   /home/pi/digibanner.py -b DigiPi -s "   v1.6-2" 
+else
+   /home/pi/digibanner.py -b DigiPi -s "   v1.6-2" -t "No sound card" 
+fi
+
+# fix/relocate read-only filesystem issues:
+  touch /run/resolv.conf
+
+#  mkdir /run/bluetooth   # moved to bluetooth service preexec
+#  cp -a /var/lib/bluetooth_digipi/* /run/bluetooth
+
+  touch /run/direwolf.log
+  chown pi:pi /run/direwolf.log
+  touch /run/loggedin  # node 
+
+  mkdir /run/.local
+  cp -a /home/pi/local/* /run/.local
+  chown -R pi:pi /run/.local
+
+  mkdir /run/.vnc   
+  cp -a /home/pi/vnc/* /run/.vnc
+  chown -R pi:pi /run/.vnc
+
+  mkdir /run/.config
+  cp -a /home/pi/config/* /run/.config
+  chown -R pi:pi /run/.config
+
+  mkdir /run/.fldigi
+  cp -a /home/pi/fldigi/* /run/.fldigi
+  chown -R pi:pi /run/.fldigi
+
+  mkdir /run/.flrig
+  cp -a /home/pi/flrig/* /run/.flrig
+  chown -R pi:pi /run/.flrig
+
+
+  mkdir -p /var/log/exim4/     # for cron'd wifi scan to keep wlan0 alive, removed exim
+  touch  /var/log/exim4/mainlog     # for cron'd wifi scan to keep wlan0 alive, removed exim
+  chmod 666 /var/log/exim4/mainlog
+  
+
+# start the tnc/igate as default service on boot 
+service tnc start 
+# service digipeater start
+
+# monitor the buttons on the screen
+/home/pi/digibuttons.py &
+
+# wait for direwolf to open gpio, then monitor ptt/pin
+sleep 1
+service gpio_redled start
+
+#wlan0 loses carrier randomly,     also tweak sshd_config with "IPQoS cs0 cs0"
+iw dev wlan0 set power_save off
+# */2 * * * * /sbin/wpa_cli -i wlan0 scan  <<< put this in cron for wlan drops!
+
+
+#echo "Killing HDMI power in 60 seconds... run   /usr/bin/tvservice -p   to abort"
+#sleep 60
+#/usr/bin/tvservice -o
+
+
+# cpufreq ondemand, x11 apps kick it up to "performance" temporarily
+echo "ondemand" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+
+# drop all connection attempts to T2QUEBEC, broken FILTER
+iptables -A OUTPUT -d  66.159.41.113 -j REJECT
+iptables -A OUTPUT -d  raqi.ca       -j REJECT
+
+exit 0

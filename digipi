@@ -1,5 +1,6 @@
 sudo apt-get install novnc -y
 sudo apt-get install tightvncserver -y
+sudo apt-get install cpufrequtils -y 
 
 ### install apache and php maybe same we install for cloudlog
 
@@ -61,4 +62,4 @@ sudo chown -h pi:pi /run/direwolf.log
 #copy /etc/rc.local from digipi to buildapi
 
 #do below to get rc.local to start on startup
-#systemctl enable rc-local.service
+systemctl enable rc-local.service
