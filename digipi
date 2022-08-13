@@ -46,6 +46,8 @@ sudo make clean
 
 sudo adduser www-data sudo
 
+cat >> /etc/sudoers <<<'%sudo  ALL=(ALL) NOPASSWD:  ALL'  
+
 
 #https://raspberrypi.stackexchange.com/questions/44812/shell-exec-is-not-working
 
