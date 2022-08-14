@@ -1,6 +1,8 @@
 sudo apt-get install novnc -y
 sudo apt-get install tightvncserver -y
 sudo apt-get install cpufrequtils -y 
+sudo apt-get install wmctrl -y
+sudo apt-get install xfonts-base -y
 
 ### install apache and php maybe same we install for cloudlog
 
@@ -30,19 +32,19 @@ sudo cp -rv /home/pi/digipi/var/www/html/* /var/www/html/
 
 
 ## install direwolf
-git clone https://www.github.com/wb2osz/direwolf
-cd direwolf || return
-mkdir build
-cd build
-sudo apt-get install -y libasound2-dev cmake libudev-dev
-cmake ..
-make -j 4
-sudo make install
-make install-conf
-sudo make clean
-#sudo chown -h pi:pi /home/pi/direwolf.log
-#sudo touch /run/direwolf.log 
-#sudo chown -h pi:pi /run/direwolf.log
+#git clone https://www.github.com/wb2osz/direwolf
+#cd direwolf || return
+#mkdir build
+#cd build
+#sudo apt-get install -y libasound2-dev cmake libudev-dev
+#cmake ..
+#make -j 4
+#sudo make install
+#make install-conf
+#sudo make clean
+###sudo chown -h pi:pi /home/pi/direwolf.log
+###sudo touch /run/direwolf.log 
+###sudo chown -h pi:pi /run/direwolf.log
 
 sudo adduser www-data sudo
 
@@ -50,22 +52,22 @@ cat >> /etc/sudoers <<<'%sudo  ALL=(ALL) NOPASSWD:  ALL'
 
 ## install fldigi
 
-FLTAR=$(curl -s http://www.w1hkj.com/files/fldigi/ | grep .tar.gz | sed 's/.*fldigi/fldigi/;s/.gz.*$/.gz/')
-FLPKG=$(echo ${FLTAR} | sed 's/.tar.gz//')
+#FLTAR=$(curl -s http://www.w1hkj.com/files/fldigi/ | grep .tar.gz | sed 's/.*fldigi/fldigi/;s/.gz.*$/.gz/')
+#FLPKG=$(echo ${FLTAR} | sed 's/.tar.gz//')
 
-#Download latest FLDIGI tar file
-cd fldigi || return
-wget --tries 2 --connect-timeout=60 http://www.w1hkj.com/files/fldigi/${FLTAR}
-tar -zxvf ${FLTAR}
-rm ./*.gz #THIS IS DANGEROUS -- SEE SC2035
+##Download latest FLDIGI tar file
+#cd fldigi || return
+#wget --tries 2 --connect-timeout=60 http://www.w1hkj.com/files/fldigi/${FLTAR}
+#tar -zxvf ${FLTAR}
+#rm ./*.gz #THIS IS DANGEROUS -- SEE SC2035
 
-#build FLDIGI
-cd ${FLPKG} || return
-./configure --prefix=/usr/local --enable-static
-make
-sudo make install
-sudo ldconfig
-sudo make clean
+##build FLDIGI
+#cd ${FLPKG} || return
+#./configure --prefix=/usr/local --enable-static
+#make
+#sudo make install
+#sudo ldconfig
+#sudo make clean
 
 
 
