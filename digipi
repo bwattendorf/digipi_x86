@@ -1,10 +1,10 @@
 sudo apt-get install novnc -y
-sudo apt-get install tightvncserver -y
+sudo apt-get install x11vnc -y
 sudo apt-get install cpufrequtils -y 
 sudo apt-get install wmctrl -y
 sudo apt-get install xfonts-base -y
 sudo apt-get install lighttpd -y
-
+####https://www.howtoforge.com/how-to-install-lighttpd-with-php-and-mariadb-on-debian-10/
 ### install apache and php maybe same we install for cloudlog
 
 sudo apt-get install build-essential cmake git libjson-c-dev libwebsockets-dev -y
