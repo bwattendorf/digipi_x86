@@ -95,6 +95,6 @@ systemctl enable rc-local.service
 
 cd .. || return
 
-sudo rm -r digipi -y
+sudo rm -r digipi 
 
-sudo apt autoremove
+sudo apt autoremove -y
