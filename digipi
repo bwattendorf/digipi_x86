@@ -93,6 +93,8 @@ sudo make clean
 #do below to get rc.local to start on startup
 systemctl enable rc-local.service
 
-sudo rm -r digipi
+cd .. || return
+
+sudo rm -r digipi -y
 
 sudo apt autoremove
