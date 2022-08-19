@@ -97,4 +97,6 @@ cd .. || return
 
 sudo rm -r digipi 
 
+pwd
+
 sudo apt autoremove -y
